@@ -1,0 +1,28 @@
+6.1
+	1. It does deadlock since both threads are waiting for the other to unlock the balance variable.
+	2. It doesn't lock up after running ~20 times
+
+6.2 
+	1. Since every fork is shared between two philosophers on either side, a deadlock could occur if a philosopher (p1) acquires a lock on his left fork while p2 already has a lock on his left fork, block p1 from taking his right. This could then go all around the table meaning that everyone has a lock on a single fork, waiting for the other to get released.
+	2. My times varied quite a bit. I had an almost instantaneous lock, but also one thta ran for a good 10 minutes without ever locking up.
+	3. 
+		"Thread-4":
+		  waiting to lock monitor 0x0000000018cc6fc8 (object 0x0000000795f65208, a Fork),
+		  which is held by "Thread-0"
+		"Thread-0":
+		  waiting to lock monitor 0x0000000017395728 (object 0x0000000795f65218, a Fork),
+		  which is held by "Thread-1"
+		"Thread-1":
+		  waiting to lock monitor 0x0000000018cc8518 (object 0x0000000795f65228, a Fork),
+		  which is held by "Thread-2"
+		"Thread-2":
+		  waiting to lock monitor 0x0000000018cc8468 (object 0x0000000795f65238, a Fork),
+		  which is held by "Thread-3"
+		"Thread-3":
+		  waiting to lock monitor 0x0000000017393208 (object 0x0000000795f65248, a Fork),
+		  which is held by "Thread-4"
+
+		So as mentioned in answer 1, each philosopher has a lock on one fork, having everybody wait for the release of their other.
+
+		4
+		

@@ -1,0 +1,186 @@
+# OS:   Windows 7; 6.1; amd64
+# JVM:  Oracle Corporation; 1.8.0_20
+# CPU:  Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+# Date: 2014-09-25T15:38:36+0200
+
+
+
+
+4216.0 ns
+   4.9 ns
+  28.1 ns
+  27.6 ns
+  27.4 ns
+  27.3 ns
+  27.3 ns
+  27.7 ns
+  27.7 ns
+  27.6 ns
+  27.5 ns
+  27.4 ns
+  27.2 ns
+  27.2 ns +/-  0.025
+  75.3 ns +/-   138.78          2
+  67.8 ns +/-    40.53          4
+  48.9 ns +/-    24.12          8
+  39.5 ns +/-     5.66         16
+  38.6 ns +/-     9.83         32
+  35.8 ns +/-     8.73         64
+  33.9 ns +/-     4.10        128
+  32.1 ns +/-     0.92        256
+  31.9 ns +/-     0.69        512
+  31.7 ns +/-     0.53       1024
+  31.7 ns +/-     0.39       2048
+  31.6 ns +/-     0.28       4096
+  29.9 ns +/-     1.35       8192
+  29.4 ns +/-     1.23      16384
+  27.5 ns +/-     0.74      32768
+  28.5 ns +/-     1.44      65536
+  27.4 ns +/-     0.15     131072
+  27.3 ns +/-     0.14     262144
+  27.3 ns +/-     0.29     524288
+  27.3 ns +/-     0.25    1048576
+  27.1 ns +/-     0.12    2097152
+  27.3 ns +/-     0.17    4194304
+  27.2 ns +/-     0.15    8388608
+  27.3 ns +/-     0.10   16777216
+multiply                            346.3 ns     940.44          2
+multiply                            128.0 ns      67.81          4
+multiply                            116.7 ns      66.21          8
+multiply                            184.5 ns     180.11         16
+multiply                             56.5 ns      50.33         32
+multiply                             42.4 ns       8.42         64
+multiply                             40.9 ns       5.59        128
+multiply                             40.9 ns       2.22        256
+multiply                             40.8 ns       3.72        512
+multiply                             37.3 ns       0.57       1024
+multiply                             37.3 ns       0.21       2048
+multiply                             36.9 ns       1.49       4096
+multiply                             30.1 ns       1.40       8192
+multiply                             29.3 ns       0.48      16384
+multiply                             27.8 ns       1.21      32768
+multiply                             28.7 ns       1.85      65536
+multiply                             27.3 ns       0.32     131072
+multiply                             27.3 ns       0.35     262144
+multiply                             27.4 ns       0.27     524288
+multiply                             27.3 ns       0.11    1048576
+multiply                             27.3 ns       0.12    2097152
+multiply                             27.2 ns       0.13    4194304
+multiply                             27.2 ns       0.11    8388608
+multiply                             27.2 ns       0.11   16777216
+multiply                             27.6 ns       0.14   16777216
+
+                                      Me - Friend          Me   - Friend   Me    -  Friend
+pow                                  68.7  - 79.6 ns       0.38 - 0.09   4194304 - 4194304          
+exp                                  50.3  - 58.1 ns       0.38 - 0.81   8388608 - 8388608          
+log                                  29.0  - 33.7 ns       0.15 - 0.16  16777216 - 8388608          
+sin                                  95.8  - 105.7 ns      0.61 - 0.58   4194304 - 4194304          
+cos                                  95.0  - 104.6 ns      0.57 - 1.62   4194304 - 4194304          
+tan                                 118.1  - 132.6 ns      0.72 - 2.33   4194304 - 2097152          
+asin                                215.5  - 259.0 ns      1.08 - 2.27   2097152 - 1048576          
+acos                                211.9  - 245.5 ns      1.29 - 4.87   2097152 - 1048576          
+atan                                 41.4  - 47.4 ns       0.15 - 0.38   8388608 - 8388608          
+
+
+random_index                         10.6 ns       0.06   33554432
+linear_search_success              1523.5 ns       7.98     262144
+binary_search_success                17.9 ns       0.05   16777216
+binary_search_success          100            4.1 ns       0.02   67108864
+binary_search_success          200           14.7 ns       0.08   33554432
+binary_search_success          400           15.9 ns       0.10   16777216
+binary_search_success          800           12.8 ns       0.05   33554432
+binary_search_success         1600           17.3 ns       0.08   16777216
+binary_search_success         3200           18.7 ns       0.05   16777216
+binary_search_success         6400           15.7 ns       0.06   16777216
+binary_search_success        12800           22.2 ns       0.08   16777216
+binary_search_success        25600           25.3 ns       0.09   16777216
+binary_search_success        51200           27.2 ns       0.10   16777216
+binary_search_success       102400           29.5 ns       0.25   16777216
+binary_search_success       204800           27.0 ns       0.09   16777216
+binary_search_success       409600           32.3 ns       0.13    8388608
+binary_search_success       819200           30.7 ns       0.15    8388608
+binary_search_success      1638400           36.1 ns       0.11    8388608
+binary_search_success      3276800           40.2 ns       0.14    8388608
+binary_search_success      6553600           40.6 ns       0.14    8388608
+binary_search_success          100           15.7 ns       0.07   16777216
+binary_search_success          200           17.0 ns       0.06   16777216
+binary_search_success          400           24.4 ns       0.44   16777216
+binary_search_success          800           41.8 ns       0.36    8388608
+binary_search_success         1600           54.8 ns       0.17    8388608
+binary_search_success         3200           64.1 ns       0.25    4194304
+binary_search_success         6400           70.9 ns       0.17    4194304
+binary_search_success        12800           77.1 ns       0.19    4194304
+binary_search_success        25600           83.4 ns       0.34    4194304
+binary_search_success        51200           90.3 ns       0.27    4194304
+binary_search_success       102400          101.4 ns       0.38    4194304
+binary_search_success       204800          115.2 ns       0.68    4194304
+binary_search_success       409600          129.4 ns       0.26    2097152
+binary_search_success       819200          147.3 ns       0.56    2097152
+binary_search_success      1638400          187.7 ns       0.78    2097152
+binary_search_success      3276800          249.3 ns       1.39    1048576
+binary_search_success      6553600          302.2 ns       1.13    1048576
+get_pseudorandom_items         100            6.1 ns       0.01   67108864
+get_pseudorandom_items         200            6.1 ns       0.02   67108864
+get_pseudorandom_items         400            6.1 ns       0.02   67108864
+get_pseudorandom_items         800            6.1 ns       0.02   67108864
+get_pseudorandom_items        1600            6.1 ns       0.02   67108864
+get_pseudorandom_items        3200            6.1 ns       0.02   67108864
+get_pseudorandom_items        6400            6.1 ns       0.02   67108864
+get_pseudorandom_items       12800            6.1 ns       0.02   67108864
+get_pseudorandom_items       25600            6.1 ns       0.02   67108864
+get_pseudorandom_items       51200            6.1 ns       0.02   67108864
+get_pseudorandom_items      102400            6.2 ns       0.07   67108864
+get_pseudorandom_items      204800            6.1 ns       0.02   67108864
+get_pseudorandom_items      409600            6.1 ns       0.02   67108864
+get_pseudorandom_items      819200            6.1 ns       0.01   67108864
+get_pseudorandom_items     1638400            6.1 ns       0.02   67108864
+get_pseudorandom_items     3276800            6.1 ns       0.02   67108864
+get_pseudorandom_items     6553600            6.1 ns       0.02   67108864
+shuffle int                      102335.0 ns    1131.76       4096
+shuffle                          101905.6 ns     808.20       4096
+selection_sort                 34471818.1 ns   94686.47          8
+quicksort                        693153.6 ns    2352.17        512
+heapsort                         738513.8 ns    2629.28        512
+selection_sort                 100         6584.0 ns      17.70      65536
+selection_sort                 200        20849.5 ns      32.44      16384
+selection_sort                 400        70562.5 ns     243.55       4096
+selection_sort                 800       254871.4 ns    2309.17       1024
+selection_sort                1600       944146.1 ns    2235.68        512
+selection_sort                3200      3629165.0 ns   12994.14        128
+selection_sort                6400     14174383.7 ns   30794.45         32
+selection_sort               12800     56157945.3 ns  109733.57          8
+selection_sort               25600    222851979.5 ns  508803.28          2
+
+
+quicksort                      100         4032.0 ns       9.98      65536
+quicksort                      200         8949.4 ns      24.51      32768
+quicksort                      400        19745.3 ns     136.25      16384
+quicksort                      800        42829.3 ns     140.79       8192
+quicksort                     1600        92687.7 ns     305.00       4096
+quicksort                     3200       199317.0 ns     708.10       2048
+quicksort                     6400       425886.4 ns    1313.76       1024
+quicksort                    12800       906875.2 ns    2707.21        512
+quicksort                    25600      1936144.1 ns    9072.99        256
+quicksort                    51200      4062965.1 ns   11122.91         64
+quicksort                   102400      8542204.3 ns   25720.96         32
+quicksort                   204800     17916465.5 ns   77325.12         16
+quicksort                   409600     37449041.9 ns  155621.71          8
+quicksort                   819200     78184546.3 ns  377314.08          4
+quicksort                  1638400    163182849.2 ns  868160.90          2
+
+
+heapsort                       100         3413.8 ns      10.13     131072
+heapsort                       200         7900.1 ns      31.81      32768
+heapsort                       400        18335.3 ns     119.50      16384
+heapsort                       800        42227.3 ns     276.88       8192
+heapsort                      1600        93092.2 ns     314.61       4096
+heapsort                      3200       204875.5 ns     600.63       2048
+heapsort                      6400       449408.9 ns    3872.02       1024
+heapsort                     12800       992569.2 ns    6580.40        256
+heapsort                     25600      2137886.6 ns   20904.05        128
+heapsort                     51200      4682812.1 ns   62148.28         64
+heapsort                    102400     10110214.3 ns   85480.14         32
+heapsort                    204800     21952925.2 ns  104231.36         16
+heapsort                    409600     47572918.1 ns  262010.96          8
+heapsort                    819200    102604761.5 ns  403047.02          4
+heapsort                   1638400    233329061.6 ns  863245.65          2

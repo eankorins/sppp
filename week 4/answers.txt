@@ -1,0 +1,46 @@
+
+
+4.1 All benchmark for this exercise results are in the mark1to7.txt file
+	1. 
+		Mark1. Every pass through seems to be around the same at ~4.9 ns for me, but as mentioned in the microbenchmarking, 
+		it does not seem to be a plausible result, and is probably the compiler optimizing, and discarding unused code.
+
+		Mark2. This runs at ~28 ns with possible virtual machine overhead, and possible interferring proccesses this seems like a plausible result.
+
+		Mark3. This runs in between 27.2-27.6, which is a smaller variance than the Microbench results, but not by
+		a huge margin. Something to note is that the overall time per task is shorter than the Mark2 run. This 
+		could be the compiler/hardware optimizing after seen the same piece of code being run several times. 
+
+		Mark4. Here i get the lower bound of Mark3 with a small std deviation of 0.025, which should mean that all 10 run throughs terminate really close to the same time.
+
+		Mark5. The std deviation reduces as the loop count increases, just as i would expect, since all the overhead of setting up for the loop to start is going to higher than the operations done in lower loop counts. This would introduce a shaky overhead. Wherae as the time to run with a higher loop count will completely shadow the overhead.
+
+		Mark6. Something interesting here was that my configuration was able to compute about twice as fast from 2-64 loops as the Microbenchmark one was, but also that the deviation dipped for a bit, but then increased rapidly at 16 loop count, maybe waiting a little longer to resume the process. Otherwise it follows the same logic - higher loop count means lower deviation.
+
+	2.
+		Mark7. There does not seem to be anything surprising here, the operations that would have higher deviation also have the longer run times. While not being too familiar with the contents of every operation it seems to follow the same logic as mark5/6
+
+4.2 All benchmark for this exercise results are in the timethreads.txt file
+	1. I did notice that the startup cost for thread create/start/join were very high, and quickly dropped off, however the deviation on them all was very high, even with the larger loop counts producting 4 digit deviation, without having the regular smooth dropoff as loop count increases.
+	2. The mark7 run through seemed to be more as expected, but still had some spikes in deviaton throughout the runs, especially for the thread sections, which are not that frequent, nor that high though. 
+
+4.3
+
+	3. The results do seem plausible, since we our N is only 100 000 should not bee too long of a computation to finish in a single turn. the highest in runtime is always at a multiple of 4, since my CPU has 4 course this makes sense. However, i can not seem to find a correlation between deviation changes and corecount. The only thing i could say is that once it approached 32 threads it seems like it is more a bottle neck than anything. Probably because the sections that are being calculated are so small, and require so many threads to resume/stop that the overhead simply outweighs the benifit of having several threads.
+
+	4. Overall the results seem to be smoother, especially in their deviation. For runtime the curves follow eachother fairly well, but it would seem that the atomic integer has less variance. I do believe that built in classes should be used if they fufill the desired task. There is a reason they are implemented, and it is probably because of people who understand the inner workings of the JVM or language all together much better than I would for example. However hamfisting a solution together only using built in classes that do not 100% do what you need them to is also wrong.
+
+	5. There do not seem to be any major changes with the new and improved performance, while the spikes in deviation are at a bit different times, they're about the same as previous AtomicLong operation. My guess for the very little difference there is would involve the fact that there are a little less than 10 000 primes under 100 000 meaning that the increment will not require many calls. Additionally the amount of primes in each thread/section of the range will decrease as the number range increases, which means that the first couple thousands will call the increment often, while the later threads may not. 
+
+4.4
+	Memoizer1                        278052.5 us    3466.03          2
+	Memoizer2                        276906.2 us    2098.23          2
+	Memoizer3                        280190.6 us     737.88          2
+	Memoizer4                        280066.7 us     400.06          2
+	Memoizer5                        280337.3 us     942.91          2
+	Memoizer6                        279882.2 us     418.77          2
+
+
+	7. The last 4 aclls are obviously the best. With the best caching seems to be hybrid caching, and just using an atomic putIfAbsent.
+
+	8. To test the scalability i could run this same example with more or less threads. Or try another operation that might generate even more values to be stored. I could also try and do something like a greedy minimal spanning tree algorithm and see how it works with caching results there.

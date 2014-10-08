@@ -1,0 +1,36 @@
+# OS:   Windows 7; 6.1; amd64
+# JVM:  Oracle Corporation; 1.8.0_20
+# CPU:  Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+# Date: 2014-09-25T18:45:36+0200
+countParallel      1               9378.2 us      61.88         32
+countParallel      2               5904.9 us      52.20         64
+countParallel      3               4215.4 us      22.59         64
+countParallel      4               3307.4 us     155.82        128
+countParallel      5               3639.0 us      13.84        128
+countParallel      6               3447.7 us       8.39        128
+countParallel      7               3184.6 us      20.51        128
+countParallel      8               2908.4 us      32.37        128
+countParallel      9               3215.0 us      10.18        128
+countParallel     10               3169.6 us      33.94        128
+countParallel     11               3064.1 us      21.19        128
+countParallel     12               2910.7 us      39.32        128
+countParallel     13               3090.2 us      13.19        128
+countParallel     14               3068.0 us      20.70        128
+countParallel     15               3040.5 us      28.86        128
+countParallel     16               2960.8 us      19.29        128
+countParallel     17               3073.0 us      27.34        128
+countParallel     18               3049.9 us      14.49        128
+countParallel     19               3125.7 us     111.49        128
+countParallel     20               3052.4 us      34.83        128
+countParallel     21               3088.6 us      21.86        128
+countParallel     22               3097.3 us      15.91        128
+countParallel     23               3114.6 us      28.32        128
+countParallel     24               3093.8 us      23.73        128
+countParallel     25               3148.7 us      24.36        128
+countParallel     26               3153.8 us      23.53        128
+countParallel     27               3184.9 us      25.65        128
+countParallel     28               3166.4 us      22.95        128
+countParallel     29               3201.0 us       7.70        128
+countParallel     30               3220.3 us      26.46        128
+countParallel     31               3251.8 us      25.87        128
+countParallel     32               3244.8 us      25.64        128

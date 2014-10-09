@@ -1,0 +1,61 @@
+Scanning D:\Projects\ITU\SPPP
+parsing... week 3/SimpleHistogram.java
+parsing... week 3/TestCache.java
+parsing... week 3/TestCallable.java
+parsing... week 3/TestCollection.java
+parsing... week 3/TestCountFactors.java
+parsing... week 3/TestCountPrimes.java
+parsing... week 3/TestFactorizer.java
+parsing... week 3/TestMutableInteger.java
+parsing... week 3/TestVehicleTracker.java
+parsing... week 3/ThreadsafeLongCounter.java
+parsing... week 4/src/Benchmark.java
+parsing... week 4/src/Benchmarkable.java
+parsing... week 4/src/IntToDouble.java
+parsing... week 4/src/SearchAndSort.java
+parsing... week 4/src/TestCache.java
+parsing... week 4/src/TestCountPrimesThreads.java
+parsing... week 4/src/TestThreadTimingLatch.java
+parsing... week 4/src/TestTimeThreads.java
+parsing... week 4/src/TestVolatileCost.java
+parsing... week 4/src/Timer.java
+parsing... week 6/TestAccountDeadlock.java
+parsing... week 6/TestAccountLockOrder.java
+parsing... week 6/TestAccountTryLock.java
+parsing... week 6/TestAccountUnsafe.java
+parsing... week 6/TestCountPrimesStream.java
+parsing... week 6/TestListHelper.java
+parsing... week 6/TestPhilosophers.java
+parsing... week 6/TestStreams.java
+parsing... week 6/ts/accounts/UnsafeAccount.java
+parsing... week 6/ts/guardedby/TestGuardedBy.java
+D:\Projects\ITU\SPPP\week 3\SimpleHistogram.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\SimpleHistogram.html
+D:\Projects\ITU\SPPP\week 3\TestCache.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\TestCache.html
+D:\Projects\ITU\SPPP\week 3\TestCallable.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\TestCallable.html
+D:\Projects\ITU\SPPP\week 3\TestCollection.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\TestCollection.html
+D:\Projects\ITU\SPPP\week 3\TestCountFactors.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\TestCountFactors.html
+D:\Projects\ITU\SPPP\week 3\TestCountPrimes.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\TestCountPrimes.html
+D:\Projects\ITU\SPPP\week 3\TestFactorizer.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\TestFactorizer.html
+D:\Projects\ITU\SPPP\week 3\TestMutableInteger.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\TestMutableInteger.html
+D:\Projects\ITU\SPPP\week 3\TestVehicleTracker.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\TestVehicleTracker.html
+D:\Projects\ITU\SPPP\week 3\ThreadsafeLongCounter.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 3\ThreadsafeLongCounter.html
+D:\Projects\ITU\SPPP\week 4\src\Benchmark.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\Benchmark.html
+D:\Projects\ITU\SPPP\week 4\src\Benchmarkable.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\Benchmarkable.html
+D:\Projects\ITU\SPPP\week 4\src\IntToDouble.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\IntToDouble.html
+D:\Projects\ITU\SPPP\week 4\src\SearchAndSort.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\SearchAndSort.html
+D:\Projects\ITU\SPPP\week 4\src\TestCache.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\TestCache.html
+D:\Projects\ITU\SPPP\week 4\src\TestCountPrimesThreads.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\TestCountPrimesThreads.html
+D:\Projects\ITU\SPPP\week 4\src\TestThreadTimingLatch.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\TestThreadTimingLatch.html
+D:\Projects\ITU\SPPP\week 4\src\TestTimeThreads.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\TestTimeThreads.html
+D:\Projects\ITU\SPPP\week 4\src\TestVolatileCost.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\TestVolatileCost.html
+D:\Projects\ITU\SPPP\week 4\src\Timer.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 4\src\Timer.html
+D:\Projects\ITU\SPPP\week 6\TestAccountDeadlock.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\TestAccountDeadlock.html
+D:\Projects\ITU\SPPP\week 6\TestAccountLockOrder.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\TestAccountLockOrder.html
+D:\Projects\ITU\SPPP\week 6\TestAccountTryLock.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\TestAccountTryLock.html
+D:\Projects\ITU\SPPP\week 6\TestAccountUnsafe.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\TestAccountUnsafe.html
+D:\Projects\ITU\SPPP\week 6\TestCountPrimesStream.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\TestCountPrimesStream.html
+D:\Projects\ITU\SPPP\week 6\TestListHelper.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\TestListHelper.html
+D:\Projects\ITU\SPPP\week 6\TestPhilosophers.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\TestPhilosophers.html
+D:\Projects\ITU\SPPP\week 6\TestStreams.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\TestStreams.html
+D:\Projects\ITU\SPPP\week 6\ts\accounts\UnsafeAccount.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\ts\accounts\UnsafeAccount.html
+D:\Projects\ITU\SPPP\week 6\ts\guardedby\TestGuardedBy.java -> D:\Projects\ITU\SPPP\threadsafe-html\jxr\week 6\ts\guardedby\TestGuardedBy.html

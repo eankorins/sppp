@@ -24,5 +24,16 @@
 
 		So as mentioned in answer 1, each philosopher has a lock on one fork, having everybody wait for the release of their other.
 
-		4
+	4. I've put a static sequence number on the fork class, which i increment on every construction, and allow to proceed if left is lower than right. 
+
+	5. Yes all philosophers get to eat.
+
+	6. It does not seem to be a fair distribution. It did have p0 lack behind quite a bit and p3 was for the most part on a gorging spree. This kept on happening and at around the 40th iteration the difference was ~3000 between highest and lowest. The other times that I ran it the results were completely different. I mosty expect that it's some rythm that a certain thread may fall in to that allows it to eat on every pass through, and has minimal waiting time. Something that i was considering though was that it should even out eventually, but the disparity just kept increasing.
+
+
+6.4
+	1. The initial test threadsafe did not complain. When removing all the synchronized keywords it starts complaining that the reads/writes of counts is not synchronized. It does not expect getSpan() to be synchronized since it doesn't look at anything but the array length that is not tampered with by any threads anyway.
 		
+	2. Threadsafe wants the counts operation where I add the hist count. Since the counts member is the only thing that is @GuardedBy threadsafe. 
+
+	3. Threadsafe gives a Sometimes Synchronized read message. I would say that there is room for worry. While the addAll() method is synchronized, meaning that it will lock its own counts member. However, the incoming hist.counts will not be locked rendering it non threadsafe.

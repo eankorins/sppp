@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<findings>
+  <finding type="CCE_RA_GUARDED_BY_VIOLATED">
+    <locations>
+      <field className="Histogram2" name="counts" type="[I" key="0" filename="SimpleHistogram.java" line="44"/>
+      <instruction className="Histogram2" method="increment" offset="6" desc="(I)V" key="1" label="relevant_sync_read" filename="SimpleHistogram.java" line="79"/>
+      <instruction className="Histogram2" method="getCount" offset="3" desc="(I)I" key="2" label="relevant_sync_read" filename="SimpleHistogram.java" line="82"/>
+      <instruction className="Histogram2" method="addAll" offset="17" desc="(LHistogram2;)V" key="3" label="relevant_syncmixed_read" filename="SimpleHistogram.java" line="90"/>
+      <instruction className="Histogram2" method="increment" offset="9" desc="(I)V" key="4" label="relevant_sync_write" filename="SimpleHistogram.java" line="79"/>
+      <instruction className="Histogram2" method="addAll" offset="23" desc="(LHistogram2;)V" key="5" label="relevant_sync_write" filename="SimpleHistogram.java" line="90"/>
+      <class name="Histogram2" key="6" label="guard_type" filename="SimpleHistogram.java"/>
+    </locations>
+    <info>
+      <message value="@GuardedBy annotation on field 'counts' violated">
+        <location key="0" message="Problem location"/>
+        <location key="1" message="Synchronized read"/>
+        <location key="2" message="Synchronized read"/>
+        <location key="3" message="Sometimes synchronized read"/>
+        <location key="4" message="Synchronized write"/>
+        <location key="5" message="Synchronized write"/>
+        <location key="6"/>
+      </message>
+      <guards>
+        <guardRelative typeRef="6" key="0" intrinsic="true">
+          <guardPath/>
+          <targetPath/>
+        </guardRelative>
+        <guardUnknown key="1" intrinsic="true"/>
+      </guards>
+      <accesses>
+        <access location="1" type="relevant_sync_read">
+          <accessGuards>
+            <guardRef key="0" status="always"/>
+          </accessGuards>
+        </access>
+        <access location="2" type="relevant_sync_read">
+          <accessGuards>
+            <guardRef key="0" status="always"/>
+          </accessGuards>
+        </access>
+        <access location="3" type="relevant_syncmixed_read">
+          <accessGuards>
+            <guardRef key="1" status="sometimes"/>
+            <guardRef key="0" status="sometimes"/>
+          </accessGuards>
+        </access>
+        <access location="4" type="relevant_sync_write">
+          <accessGuards>
+            <guardRef key="0" status="always"/>
+          </accessGuards>
+        </access>
+        <access location="5" type="relevant_sync_write">
+          <accessGuards>
+            <guardRef key="0" status="always"/>
+          </accessGuards>
+        </access>
+      </accesses>
+    </info>
+  </finding>
+</findings>

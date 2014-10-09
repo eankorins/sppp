@@ -1,20 +1,13 @@
 // For week 3
 // sestoft@itu.dk * 2014-09-04
-import TestCountPrime;
+import javax.annotation.concurrent.GuardedBy; 
 class SimpleHistogram {
-  public static void main(String[] args) {
-    final Histogram histogram = new Histogram1(30);
-    histogram.increment(7);
-    histogram.increment(13);
-    histogram.increment(7);
-    dump(histogram);
-  }
-      public static void main(String[] args) {
-        final int range = 5000;
-        final Histogram histogram = new Histogram2(30);
-        int count = 0;
-        for (int p=0; p<range; p++)
-            histogram.increment(countFactors(p));
+    public static void main(String[] args) {
+    final int range = 5000;
+    final Histogram histogram = new Histogram2(30);
+    int count = 0;
+    for (int p=0; p<range; p++)
+        histogram.increment(countFactors(p));
         
     }
 
@@ -52,6 +45,7 @@ interface Histogram {
   public void increment(int item);
   public int getCount(int item);
   public int getSpan();
+  //public void addAll(Histogram hist);
 }
 
 class Histogram1 implements Histogram {
@@ -68,18 +62,15 @@ class Histogram1 implements Histogram {
   public int getSpan() {
     return counts.length;
   }
+  public void addAll(Histogram h ){
+
+  }
 }
 
-/*
-    3.1.1 
-        Making the counts variable final assures that is not mutable after initialization
-        Synchronizing the increment method, assures that no single increments are skipped.
-        One could synchronize getSpan(), however, in this solution it is only used for dump()
-        meaning that it will not be called during multi threading.
-        getSpan() will not need any thread safety since the counts variable will remain the same length.
 
-*/
+
 class Histogram2 implements Histogram{
+  @GuardedBy("this")
   final int[] counts;
   public Histogram2(int span) {
     this.counts = new int[span];
@@ -87,10 +78,20 @@ class Histogram2 implements Histogram{
   public synchronized void increment(int item) {
     counts[item] = counts[item] + 1;
   }
-  public int getCount(int item) {
+  public synchronized int getCount(int item) {
     return counts[item];
   }
-  public int getSpan() {
+  public synchronized int getSpan() {
     return counts.length;
+  }
+  public synchronized void addAll(Histogram2 hist){
+    if (counts.length == hist.getSpan()){
+      for(int i = 0; i < counts.length; i++){
+          counts[i] += hist.counts[i];
+      }
+    }
+    else {
+      new RuntimeException();
+    }
   }
 }

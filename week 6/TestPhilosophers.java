@@ -13,13 +13,26 @@
 // (p+1)%5.
 
 // This solution is wrong; it will deadlock after a while.
-
+import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.atomic.AtomicInteger;
 public class TestPhilosophers {
+  
+
   public static void main(String[] args) {
+    final AtomicInteger[] counters = { new AtomicInteger(), new AtomicInteger(), new AtomicInteger(), new AtomicInteger(), new AtomicInteger() };
     Fork[] forks = { new Fork(), new Fork(), new Fork(), new Fork(), new Fork() };
     for (int place=0; place<forks.length; place++) {
-      Thread phil = new Thread(new Philosopher(forks, place));
+      Thread phil = new Thread(new Philosopher(forks, place, counters[place]));
       phil.start();
+    }
+
+    while (true){
+
+      for(int i = 0; i < counters.length; i++){
+        System.out.println(i + " ate: " + counters[i].get() + " times");
+      }
+      try { Thread.sleep(10000); }
+      catch (InterruptedException exn) { }
     }
   }
 }
@@ -27,10 +40,11 @@ public class TestPhilosophers {
 class Philosopher implements Runnable {
   private final Fork[] forks;
   private final int place;
-
-  public Philosopher(Fork[] forks, int place) {
+  public final AtomicInteger counter;
+  public Philosopher(Fork[] forks, int place, AtomicInteger counter) {
     this.forks = forks;
     this.place = place;
+    this.counter = counter;
   }
 
   public void run() {
@@ -38,11 +52,15 @@ class Philosopher implements Runnable {
       // Take the two forks to the left and the right
       int left = place, right = (place+1) % forks.length;
       
-      synchronized (forks[left]) {
-	       synchronized (forks[right]) {
-	           // Eat
-	           System.out.print(place + " ");
-	       }
+      if(forks[left].tryLock()){
+        try {
+          if (forks[right].tryLock()) {
+            try{ 
+              counter.incrementAndGet();
+            } 
+            finally { forks[right].unlock(); }
+          }
+        } finally { forks[left].unlock(); }
       }
       // Think
       try { Thread.sleep(10); }
@@ -51,5 +69,11 @@ class Philosopher implements Runnable {
   }
 }
 
-class Fork { }
+class Fork extends ReentrantLock {
+  public static int sequenceNumber;
+
+  public Fork(){
+    sequenceNumber += 1;
+  }
+}
 

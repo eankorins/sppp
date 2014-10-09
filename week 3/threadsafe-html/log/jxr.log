@@ -1,0 +1,21 @@
+Scanning D:\Projects\ITU\SPPP\week 3
+parsing... SimpleHistogram.java
+parsing... TestCache.java
+parsing... TestCallable.java
+parsing... TestCollection.java
+parsing... TestCountFactors.java
+parsing... TestCountPrimes.java
+parsing... TestFactorizer.java
+parsing... TestMutableInteger.java
+parsing... TestVehicleTracker.java
+parsing... ThreadsafeLongCounter.java
+D:\Projects\ITU\SPPP\week 3\SimpleHistogram.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\SimpleHistogram.html
+D:\Projects\ITU\SPPP\week 3\TestCache.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\TestCache.html
+D:\Projects\ITU\SPPP\week 3\TestCallable.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\TestCallable.html
+D:\Projects\ITU\SPPP\week 3\TestCollection.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\TestCollection.html
+D:\Projects\ITU\SPPP\week 3\TestCountFactors.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\TestCountFactors.html
+D:\Projects\ITU\SPPP\week 3\TestCountPrimes.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\TestCountPrimes.html
+D:\Projects\ITU\SPPP\week 3\TestFactorizer.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\TestFactorizer.html
+D:\Projects\ITU\SPPP\week 3\TestMutableInteger.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\TestMutableInteger.html
+D:\Projects\ITU\SPPP\week 3\TestVehicleTracker.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\TestVehicleTracker.html
+D:\Projects\ITU\SPPP\week 3\ThreadsafeLongCounter.java -> D:\Projects\ITU\SPPP\week 3\threadsafe-html\jxr\ThreadsafeLongCounter.html

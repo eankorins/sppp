@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+    <head>
+        <link rel="shortcut icon" href="../ico/contemplate.png"/>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <script type="text/javascript" src="../lib/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="../findings.js"></script>
+        <script type="text/javascript" src="../lib/codeview.js"></script>
+        <link type="text/css" rel="stylesheet" href="stylesheet.css"/>
+        <title>TestCountFactors xref</title>
+    </head>
+
+    <body>
+
+        <pre data-sourcefile="week 3/TestCountFactors.java"><div class="1"><a class="jxr_linenumber" name="1" href="#1">1</a>   <em class="jxr_comment">// For week 2</em></div>
+<div class="2"><a class="jxr_linenumber" name="2" href="#2">2</a>   <em class="jxr_comment">// sestoft@itu.dk * 2014-08-29</em></div>
+<div class="3"><a class="jxr_linenumber" name="3" href="#3">3</a>   </div>
+<div class="4"><a class="jxr_linenumber" name="4" href="#4">4</a>   <strong class="jxr_keyword">class</strong> <a href="TestCountFactors.html">TestCountFactors</a> {</div>
+<div class="5"><a class="jxr_linenumber" name="5" href="#5">5</a>   </div>
+<div class="6"><a class="jxr_linenumber" name="6" href="#6">6</a>   </div>
+<div class="7"><a class="jxr_linenumber" name="7" href="#7">7</a>       <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> main(String[] args) {</div>
+<div class="8"><a class="jxr_linenumber" name="8" href="#8">8</a>           <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> range = 5000;</div>
+<div class="9"><a class="jxr_linenumber" name="9" href="#9">9</a>           <strong class="jxr_keyword">final</strong> <a href="TestCountFactors.html">Histogram</a> histogram = <strong class="jxr_keyword">new</strong> <a href="TestCountFactors.html">Histogram2</a>(30);</div>
+<div class="10"><a class="jxr_linenumber" name="10" href="#10">10</a>          <strong class="jxr_keyword">int</strong> count = 0;</div>
+<div class="11"><a class="jxr_linenumber" name="11" href="#11">11</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> p=0; p&lt;range; p++)</div>
+<div class="12"><a class="jxr_linenumber" name="12" href="#12">12</a>              histogram.increment(countFactors(p));</div>
+<div class="13"><a class="jxr_linenumber" name="13" href="#13">13</a>          </div>
+<div class="14"><a class="jxr_linenumber" name="14" href="#14">14</a>      }</div>
+<div class="15"><a class="jxr_linenumber" name="15" href="#15">15</a>  </div>
+<div class="16"><a class="jxr_linenumber" name="16" href="#16">16</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> countFactors(<strong class="jxr_keyword">int</strong> p) {</div>
+<div class="17"><a class="jxr_linenumber" name="17" href="#17">17</a>          <strong class="jxr_keyword">if</strong> (p &lt; 2) </div>
+<div class="18"><a class="jxr_linenumber" name="18" href="#18">18</a>              <strong class="jxr_keyword">return</strong> 0;</div>
+<div class="19"><a class="jxr_linenumber" name="19" href="#19">19</a>          <strong class="jxr_keyword">int</strong> factorCount = 1, k = 2;</div>
+<div class="20"><a class="jxr_linenumber" name="20" href="#20">20</a>          <strong class="jxr_keyword">while</strong> (p &gt;= k * k) {</div>
+<div class="21"><a class="jxr_linenumber" name="21" href="#21">21</a>              <strong class="jxr_keyword">if</strong> ((p % k == 0) &amp;&amp; isPrime(k)) {</div>
+<div class="22"><a class="jxr_linenumber" name="22" href="#22">22</a>                  factorCount++;</div>
+<div class="23"><a class="jxr_linenumber" name="23" href="#23">23</a>                  p /= k;</div>
+<div class="24"><a class="jxr_linenumber" name="24" href="#24">24</a>              } <strong class="jxr_keyword">else</strong> </div>
+<div class="25"><a class="jxr_linenumber" name="25" href="#25">25</a>              k++;</div>
+<div class="26"><a class="jxr_linenumber" name="26" href="#26">26</a>          }</div>
+<div class="27"><a class="jxr_linenumber" name="27" href="#27">27</a>          <strong class="jxr_keyword">return</strong> factorCount;</div>
+<div class="28"><a class="jxr_linenumber" name="28" href="#28">28</a>      }</div>
+<div class="29"><a class="jxr_linenumber" name="29" href="#29">29</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isPrime(<strong class="jxr_keyword">int</strong> n) {</div>
+<div class="30"><a class="jxr_linenumber" name="30" href="#30">30</a>          <strong class="jxr_keyword">int</strong> k = 2;</div>
+<div class="31"><a class="jxr_linenumber" name="31" href="#31">31</a>          <strong class="jxr_keyword">while</strong> (k * k &lt;= n &amp;&amp; n % k != 0)</div>
+<div class="32"><a class="jxr_linenumber" name="32" href="#32">32</a>              k++;</div>
+<div class="33"><a class="jxr_linenumber" name="33" href="#33">33</a>          <strong class="jxr_keyword">return</strong> n &gt;= 2 &amp;&amp; k * k &gt; n;</div>
+<div class="34"><a class="jxr_linenumber" name="34" href="#34">34</a>      }</div>
+<div class="35"><a class="jxr_linenumber" name="35" href="#35">35</a>  }</div>
+<div class="36"><a class="jxr_linenumber" name="36" href="#36">36</a>  </div>
+<div class="37"><a class="jxr_linenumber" name="37" href="#37">37</a>  <strong class="jxr_keyword">interface</strong> <a href="TestCountFactors.html">Histogram</a> {</div>
+<div class="38"><a class="jxr_linenumber" name="38" href="#38">38</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> increment(<strong class="jxr_keyword">int</strong> item);</div>
+<div class="39"><a class="jxr_linenumber" name="39" href="#39">39</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getCount(<strong class="jxr_keyword">int</strong> item);</div>
+<div class="40"><a class="jxr_linenumber" name="40" href="#40">40</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getSpan();</div>
+<div class="41"><a class="jxr_linenumber" name="41" href="#41">41</a>  }</div>
+<div class="42"><a class="jxr_linenumber" name="42" href="#42">42</a>  </div>
+<div class="43"><a class="jxr_linenumber" name="43" href="#43">43</a>  <strong class="jxr_keyword">class</strong> <a href="TestCountFactors.html">Histogram2</a> <strong class="jxr_keyword">implements</strong> <a href="TestCountFactors.html">Histogram</a>{</div>
+<div class="44"><a class="jxr_linenumber" name="44" href="#44">44</a>    <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>[] counts;</div>
+<div class="45"><a class="jxr_linenumber" name="45" href="#45">45</a>    <strong class="jxr_keyword">public</strong> <a href="TestCountFactors.html">Histogram2</a>(<strong class="jxr_keyword">int</strong> span) {</div>
+<div class="46"><a class="jxr_linenumber" name="46" href="#46">46</a>      <strong class="jxr_keyword">this</strong>.counts = <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[span];</div>
+<div class="47"><a class="jxr_linenumber" name="47" href="#47">47</a>    }</div>
+<div class="48"><a class="jxr_linenumber" name="48" href="#48">48</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> increment(<strong class="jxr_keyword">int</strong> item) {</div>
+<div class="49"><a class="jxr_linenumber" name="49" href="#49">49</a>      counts[item] = counts[item] + 1;</div>
+<div class="50"><a class="jxr_linenumber" name="50" href="#50">50</a>    }</div>
+<div class="51"><a class="jxr_linenumber" name="51" href="#51">51</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getCount(<strong class="jxr_keyword">int</strong> item) {</div>
+<div class="52"><a class="jxr_linenumber" name="52" href="#52">52</a>      <strong class="jxr_keyword">return</strong> counts[item];</div>
+<div class="53"><a class="jxr_linenumber" name="53" href="#53">53</a>    }</div>
+<div class="54"><a class="jxr_linenumber" name="54" href="#54">54</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong> getSpan() {</div>
+<div class="55"><a class="jxr_linenumber" name="55" href="#55">55</a>      <strong class="jxr_keyword">return</strong> counts.length;</div>
+<div class="56"><a class="jxr_linenumber" name="56" href="#56">56</a>    }</div>
+<div class="57"><a class="jxr_linenumber" name="57" href="#57">57</a>  }</div>
+</pre>
+
+        
+
+    </body>
+
+</html>
+

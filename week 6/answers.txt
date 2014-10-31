@@ -1,6 +1,8 @@
 6.1
 	1. It does deadlock since both threads are waiting for the other to unlock the balance variable.
 	2. It doesn't lock up after running ~20 times
+	3. It does not deadlock and compiles.
+	4. The reason to not take all three locks is that it would mean that every single transfer call would have to wait for the tielock to be lifted. Meaning that it would in the end essentially be sequential, rendering the multi-threading obsolete.
 
 6.2 
 	1. Since every fork is shared between two philosophers on either side, a deadlock could occur if a philosopher (p1) acquires a lock on his left fork while p2 already has a lock on his left fork, block p1 from taking his right. This could then go all around the table meaning that everyone has a lock on a single fork, waiting for the other to get released.

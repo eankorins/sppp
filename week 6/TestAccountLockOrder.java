@@ -63,8 +63,11 @@ public class TestAccountLockOrder {
 
 
 class Account {
+  private static final Object tieLock = new Object();
+
   private static final AtomicInteger intSequence = new AtomicInteger();
   private final int serial = intSequence.getAndIncrement();
+
   private long balance = 0;
 
   public synchronized void deposit(long amount) {
@@ -75,90 +78,125 @@ class Account {
     return balance;
   }
 
-  // This is thread-safe and cannot deadlock; takes the locks in the
-  // order determined by the Account object's serial number.
   public void transferD(Account that, final long amount) {
     Account ac1 = this, ac2 = that;
     if (ac1.serial <= ac2.serial)
-      synchronized (ac1) { synchronized (ac2) { // ac1 <= ac2
+      synchronized (ac1) {
+        synchronized (ac2) { // ac1 <= ac2
           ac1.balance = ac1.balance - amount;
           ac2.balance = ac2.balance + amount;
-        } }
+        }
+      }
     else
-      synchronized (ac2) { synchronized (ac1) { // ac2 < ac1
+      synchronized (ac2) {
+        synchronized (ac1) { // ac2 < ac1
           ac1.balance = ac1.balance - amount;
           ac2.balance = ac2.balance + amount;
-        } }
+        }
+      }
   }
 
   public static long balanceSumD(Account ac1, Account ac2) {
     if (ac1.serial <= ac2.serial)
-      synchronized (ac1) { synchronized (ac2) { // ac1 <= ac2
+      synchronized (ac1) {
+        synchronized (ac2) { // ac1 <= ac2
           return ac1.balance + ac2.balance;
-        } }
+        }
+      }
     else
-      synchronized (ac2) { synchronized (ac1) { // ac2 < ac1
+      synchronized (ac2) {
+        synchronized (ac1) { // ac2 < ac1
           return ac1.balance + ac2.balance;
-        } }
+        }
+      }
   }
 
-  // This is thread-safe but may deadlock; takes the locks in the
-  // order determined by the Account object's hashCode.  May deadlock
-  // in (the rare) case distinct objects get identical hashcodes; this
-  // case may be handled using a third lock, as in Goetz p. 209.
   public void transferE(Account that, final long amount) {
     Account ac1 = this, ac2 = that;
-    if (System.identityHashCode(ac1) <= System.identityHashCode(ac2))
-      synchronized (ac1) { synchronized (ac2) { // ac1 <= ac2
-          ac1.balance = ac1.balance - amount;
-          ac2.balance = ac2.balance + amount;
-        } }
-    else
-      synchronized (ac2) { synchronized (ac1) { // ac2 < ac1
-          ac1.balance = ac1.balance - amount;
-          ac2.balance = ac2.balance + amount;
-        } }
-  }
-
-  public static long balanceSumE(Account ac1, Account ac2) {
-    if (System.identityHashCode(ac1) <= System.identityHashCode(ac2))
-      synchronized (ac1) { synchronized (ac2) { // ac1 <= ac2
-          return ac1.balance + ac2.balance;
-        } }
-    else
-      synchronized (ac2) { synchronized (ac1) { // ac2 < ac1
-          return ac1.balance + ac2.balance;
-        } }
-  }
-
-  // Use an abstraction that encapsulates the ordered lock-taking.
-  // It works, but is too clever for the ThreadSafe tool, see below.
-  public void transferF(final Account that, final long amount) {
-    final Account ac1 = this, ac2 = that;
-    lockBothAndRun(ac1, ac2, new Runnable() {
-        public void run() {
+    if (System.identityHashCode(ac1) < System.identityHashCode(ac2))
+      synchronized (ac1) {
+        synchronized (ac2) { // ac1 <= ac2
           ac1.balance = ac1.balance - amount;
           ac2.balance = ac2.balance + amount;
         }
-      });
+      }
+    else if (System.identityHashCode(ac1) > System.identityHashCode(ac2)) {
+      synchronized (ac2) {
+        synchronized (ac1) { // ac2 < ac1
+          ac1.balance = ac1.balance - amount;
+          ac2.balance = ac2.balance + amount;
+        }
+      }
+    } else {
+      synchronized (tieLock) {
+        synchronized (ac1) {
+          synchronized (ac2) {// ac1=ac2
+            ac1.balance = ac1.balance - amount;
+            ac2.balance = ac2.balance + amount;
+          }
+
+        }
+      }
+    }
+  }
+  public static long balanceSumE(Account ac1, Account ac2) {
+    if (System.identityHashCode(ac1) < System.identityHashCode(ac2))
+      synchronized (ac1) {
+        synchronized (ac2) {
+          return ac1.balance + ac2.balance;
+        }
+      }
+    else if (System.identityHashCode(ac1) > System.identityHashCode(ac2)) {
+      synchronized (ac2) {
+        synchronized (ac1) { 
+          return ac1.balance + ac2.balance;
+        }
+      }
+    } else {
+      synchronized (tieLock) {
+        synchronized (ac1) {
+          synchronized (ac2) {
+            return ac1.balance + ac2.balance;
+          }
+
+        }
+      }
+    }
+  }
+
+  public void transferF(final Account that, final long amount) {
+    final Account ac1 = this, ac2 = that;
+    lockBothAndRun(ac1, ac2, new Runnable() {
+      public void run() {
+        ac1.balance = ac1.balance - amount;
+        ac2.balance = ac2.balance + amount;
+      }
+    });
   }
 
   public static long balanceSumF(Account ac1, Account ac2) {
     final AtomicLong result = new AtomicLong();
     lockBothAndRun(ac1, ac2, new Runnable() {
-        public void run() {
-          result.addAndGet(ac1.balance);
-          result.addAndGet(ac2.balance);
-        }
-      });
+      public void run() {
+        result.addAndGet(ac1.balance);
+        result.addAndGet(ac2.balance);
+      }
+    });
     return result.longValue();
   }
 
-  // This is elegant but the ThreadSafe tool does not understand it
   public static void lockBothAndRun(Account ac1, Account ac2, Runnable action) {
     if (ac1.serial <= ac2.serial)
-      synchronized (ac1) { synchronized (ac2) { action.run(); } }
+      synchronized (ac1) {
+        synchronized (ac2) {
+          action.run();
+        }
+      }
     else
-      synchronized (ac2) { synchronized (ac1) { action.run(); } }
+      synchronized (ac2) {
+        synchronized (ac1) {
+          action.run();
+        }
+      }
   }
 }

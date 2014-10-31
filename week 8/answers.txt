@@ -1,0 +1,82 @@
+7.1
+	7.1.2
+	Since the stripe's lock, as well as the stripe's size are accessed on the same index of the different arrays, 
+	the locking of stripe s will mean that the size, or bucket will not be changed for that particular stripe.
+	However, once the lock is released and the next stripe is read, changes could occur, which are not a part of the final displayed size().
+
+
+	7.1.5 
+	I iterate over the stripes, lock that, and starting at stripe s, I iterate over the bucket list with an offset of lockCount every time, so i get all the buckets in the stripe.
+
+	7.1.7
+	# OS:   Windows 7; 6.1; amd64
+	# JVM:  Oracle Corporation; 1.8.0_20
+	# CPU:  Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+	# Date: 2014-10-28T12:28:06+
+
+	SynchronizedMap       8          461774.4 us   21758.46          2 99993.0
+	StripedMap            8          187604.4 us   31230.99          2 99993.0
+
+	My best performance was with 8 threads and 32 stripes. Where I have an increase of performance between 2 - 2.5 times.
+	However, I do not seem to see the same 3x performance as shown in the week 7 slides, and i also saw quite high std deviation,
+	which I am not too sure about the cause.
+
+	7.1.8 
+
+	By using less locks there will be a smaller lock array required to store in memory, it would be terribly inefficient to have a 100_000 length array,
+	to only be responsible for locking. There is a low likelyhood that several threads will access the same stripe at a given time. Additionally,
+	depending on how smart the JVM is, it could easily store the mods of different computation, allowing for finding the correct lock faster. 
+	Having one for each bucket item, at a larger scale would probably defeat the purpose of striping.
+
+	7.1.9
+
+	Having a higher multiple in stripes means that there will be less collisions when threads try to acccess values. Say there are only 16 stripes,
+	if t1 tries to access bucket16 and t2 tries to access bucket 32 then one would have to wait for the other. With 32 stripes botht threads can continue.
+
+	7.1.10
+
+	When the bucket count is doubled in reallocateBucket() the new entry would be on the same stripe.
+
+
+
+7.2
+	7.2.5
+		# OS:   Windows 7; 6.1; amd64
+		# JVM:  Oracle Corporation; 1.8.0_25
+		# CPU:  Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+		# Date: 2014-10-28T14:29:07+0100
+		SynchronizedMap       8          489476.1 us   40266.71          2 
+		StripedMap            8          176221.4 us   29658.36          2 
+		StripedWriteMap       8          111976.9 us    2669.58          4 
+		WrapConcHashMap       8          111779.2 us    5622.39          4 
+
+		Looking at the chart from the week 7 slides, the 4x speed seems to be quite right. Something even more striking is that the std deviation
+		was a lot lower for the WriteMap, meaning that each independent run through is more reliable in time.
+
+8.3
+	8.3.1
+
+	I create a new DownloadWorker for every url in the urls array. This will append to the text area whenever a single DownloadWorker is done with it's particular site. 
+	This means that it in its current version does not support a progress bar or knows when the entire operation is done, but simply fetches as quickly as possible.
+
+
+
+On another note, I did the StripeTest on my main computer and got very different results: 
+
+# OS:   Windows 7; 6.1; amd64
+# JVM:  Oracle Corporation; 1.8.0_20
+# CPU:  Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+# Date: 2014-10-28T20:09:35+0100
+SynchronizedMap       8          434311.1 us   11537.65          2
+99993.0
+StripedMap            8          110184.0 us    3068.52          4
+99993.0
+StripedWriteMap       8           93177.5 us    8218.40          4
+99993.0
+WrapConcHashMap       8           86713.8 us    6381.51          4
+99993.0
+
+
+This is on a way faster system, with an overclocked desktop CPU and faster RAM.
+
+What had me interested more than the obvious time improvement (which also shows a closer simliraity to that of the graph that we were shown in class). Was that this machine was better at keeping a lower std deviation for the slower operations, but no matter what i did, and how often I ran the tests, the StripWrite and WrapConc did not improve for std deviation vs StripedMap. I don't know what it means, just thought I would mention it.

@@ -49,13 +49,14 @@ class TestStmHistogram {
             threads[t].start();
         }
 
+        
+        try { startBarrier.await(); } catch (Exception exn) { }
+        try { stopBarrier.await(); } catch (Exception exn) { }
         for(int i = 0; i < 200; i++){
             total.transferBins(histogram);
             try{ Thread.sleep(30); } catch(InterruptedException exn){}
         }
         total.transferBins(total);
-        try { startBarrier.await(); } catch (Exception exn) { }
-        try { stopBarrier.await(); } catch (Exception exn) { }
         dump(histogram);
         dump(total);
     }
@@ -104,11 +105,15 @@ class StmHistogram implements Histogram {
     }
 
     public void increment(int bin) {
-        counts[bin].atomicIncrementAndGet(1);
+        atomic(new Runnable(){public void run(){ counts[bin].increment(); }});
     }
 
     public int getCount(int bin) {
-        return counts[bin].atomicGet();
+        return atomic(new Callable<Integer>(){
+            public Integer call(){ 
+                return counts[bin].get(); 
+            }
+        });
     }
 
     public int getSpan() {
@@ -124,14 +129,20 @@ class StmHistogram implements Histogram {
     }
 
     public int getAndClear(int bin) {
-        return counts[bin].atomicGetAndSet(0);
+        return atomic(new Callable<Integer>(){
+            public Integer call(){
+                return counts[bin].getAndSet(0); 
+            }
+        });
     }
 
     public void transferBins(Histogram hist) {
-        for(int i = 0; i < hist.getSpan(); i++){
-            final int bin = i;
-            counts[bin].atomicIncrementAndGet(hist.getAndClear(bin));
-
-        }
+        atomic(new Runnable(){
+            public void run(){
+                for(int i = 0; i < hist.getSpan(); i++){
+                    counts[i].increment(hist.getAndClear(i));
+                }
+            }
+        });
     }
 }
